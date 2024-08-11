@@ -1,24 +1,53 @@
+let result = document.getElementById("result");
+let searchBtn = document.getElementById("search-btn");
+let cityRef = document.getElementById("city");
+var apikey="2691a8ef6debec9416140d77a76c01b7"
 
-const form=document.querySelector("#form");
-const input=document.querySelector("#input")
-const output=document.querySelector("#output");
-
-form.addEventListener("submit",async(e)=>{
-
-e.preventDefault();
-  output.style.display="block"
-  try{
-
-let api=`https://api.openweathermap.org/data/2.5/weather?q=${input.value}&unit=metric`
-let apikey="2691a8ef6debec9416140d77a76c01b7"
-
-let response=await fetch(api + `&appid=${apikey}`)
-let data=await response.json();
-output.innerText=`Humidity ${data.main.humidity}\nWindSpeed:${data.wind.speed} km/h\nTemperature:${Math.floor(data.main.temp)} kelvin\n Location:${data.name} \nStatus : ${data.weather[0].description}`
-     console.log(data)
-  }catch(error){
-    console.log(error)
+let getWeather = () => {
+  let cityValue = cityRef.value;
+  
+  if (cityValue.length == 0) {
+    result.innerHTML = `<h3 class="msg">Please enter a city name</h3>`;
   }
-
-
-})
+  
+  else {
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${apikey}&units=metric`;
+    
+    cityRef.value = "";
+    fetch(url)
+      .then((resp) => resp.json())
+      
+      .then((data) => {
+        console.log(data);
+        console.log(data.weather[0].icon);
+        console.log(data.weather[0].main);
+        console.log(data.weather[0].description);
+        console.log(data.name);
+        console.log(data.main.temp_min);
+        console.log(data.main.temp_max);
+        result.innerHTML = `
+        <h2>${data.name}</h2>
+        <h4 class="weather">${data.weather[0].main}</h4>
+        <h4 class="desc">${data.weather[0].description}</h4>
+        <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
+        <h1>${data.main.temp} &#176;</h1>
+        <div class="temp-container">
+            <div>
+                <h4 class="title">min</h4>
+                <h4 class="temp">${data.main.temp_min}&#176;</h4>
+            </div>
+            <div>
+                <h4 class="title">max</h4>
+                <h4 class="temp">${data.main.temp_max}&#176;</h4>
+            </div>
+        </div>
+        `;
+      })
+      
+      .catch(() => {
+        result.innerHTML = `<h3 class="msg">City not found</h3>`;
+      });
+  }
+};
+searchBtn.addEventListener("click", getWeather);
+window.addEventListener("load", getWeather);
