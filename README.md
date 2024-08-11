@@ -1,1 +1,2 @@
-weather app made with html css and javascript![Screenshot 2024-08-09 234904](https://github.com/user-attachments/assets/6d2c28b2-2aff-4893-951e-544d1647b30d)
+weather app made with html css and javascript
+![Screenshot 2024-08-11 202207](https://github.com/user-attachments/assets/73546d17-51e1-4491-af41-e595d81a930b)
