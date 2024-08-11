@@ -1,24 +1,33 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Weather App</title>
-    <link rel="stylesheet" href="style.css">
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="key.js"></script>
     <script defer src="script.js"></script>
-</head>
-<body>
- 
-<div class="container">
-  
-<div class="section">
-
-  <form id="form">
-<input type="text" id="input" placeholder="Enter City Name">
-<button class="btn">Search</button>
-
-<h1 id="output"></h1>
-
- </form>
-</div>
-</div>
-</body>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="container">
+        <div class="search-container">
+          <input
+            type="text"
+            placeholder="Enter a city name"
+            id="city"
+            value="kerala"
+          />
+          <button id="search-btn">Search</button>
+        </div>
+        <div id="result"></div>
+      </div>
+    </div>
+  </body>
 </html>
