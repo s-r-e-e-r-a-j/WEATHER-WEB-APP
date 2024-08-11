@@ -14,7 +14,7 @@ let apikey="2691a8ef6debec9416140d77a76c01b7"
 
 let response=await fetch(api + `&appid=${apikey}`)
 let data=await response.json();
-output.innerText=`Humidity ${data.main.humidity}\nWindSpeed:${data.wind.speed}\nTemperature:${Math.floor(data.main.temp)}\n Location:${data.name} \nStatus : ${data.weather[0].description}`
+output.innerText=`Humidity ${data.main.humidity}\nWindSpeed:${data.wind.speed} km/h\nTemperature:${Math.floor(data.main.temp)} F\n Location:${data.name} \nStatus : ${data.weather[0].description}`
      console.log(data)
   }catch(error){
     console.log(error)
